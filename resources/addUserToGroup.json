@@ -1,0 +1,85 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.0",
+  "body": [
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": 2,
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Add User to Group",
+              "weight": "bolder",
+              "size": "medium",
+              "wrap": true,
+              "style": "heading"
+            },
+            {
+              "type": "TextBlock",
+              "text": "We just need a few more details to get started with your request",
+              "isSubtle": true,
+              "wrap": true
+            },
+            {
+              "type": "TextBlock",
+              "text": "User ID",
+              "wrap": true
+            },
+            {
+              "type": "Input.Text",
+              "id": "userID",
+              "placeholder": "c-pavdit",
+              "isRequired": true
+            },
+            {
+              "type": "TextBlock",
+              "text": "New Group",
+              "wrap": true
+            },
+            {
+              "type": "Input.Text",
+              "id": "newGroup",
+              "placeholder": "GTT"
+            },
+            {
+              "type": "TextBlock",
+              "text": "New Role",
+              "wrap": true
+            },
+            {
+              "type": "Input.Text",
+              "id": "newRole",
+              "placeholder": "Creator",
+              "validation": {
+                  "necessity": "Required",
+                  "errorMessage": "First Name is required"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": 1,
+          "items": [
+            {
+              "type": "Image",
+              "url": "https://visualpharm.com/assets/796/Edit%20Account-595b40b75ba036ed117d5d62.svg",
+              "size": "auto",
+              "altText": "Addition of a user to a Group in Teamcenter"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Submit"
+    }
+  ]
+}

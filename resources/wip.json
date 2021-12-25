@@ -1,0 +1,74 @@
+{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.0",
+    "body": [
+      {
+        "type": "TextBlock",
+        "text": "Work In Progress",
+        "weight": "bolder",
+        "size": "medium",
+        "wrap": true,
+        "style": "heading"
+      },
+      {
+        "type": "ColumnSet",
+        "columns": [
+          {
+            "type": "Column",
+            "width": "auto",
+            "items": [
+              {
+                "type": "Image",
+                "url": "https://icon-library.com/images/work_in_progress-512_60313.png",
+                "size": "small",
+                "style": "person"
+              }
+            ]
+          },
+          {
+            "type": "Column",
+            "width": "stretch",
+            "items": [
+              {
+                "type": "TextBlock",
+                "text": "Assaabloy",
+                "weight": "bolder",
+                "wrap": true
+              },
+              {
+                "type": "TextBlock",
+                "spacing": "none",
+                "text": "Created {{DATE(2021-12-25T06:08:39Z, SHORT)}}",
+                "isSubtle": true,
+                "wrap": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TextBlock",
+        "text": "This is a Proof-of-Concept implementation. The current request could not be processed as the necessary implementation is in progress.",
+        "wrap": true
+      },
+      {
+        "type": "FactSet",
+        "facts": [
+          {
+            "title": "About:",
+            "value": "A Chatbot PoC for PLM Applications"
+          },
+          {
+            "title": "Contact:",
+            "value": "Wipro Team"
+          },
+          {
+            "title": "Release:",
+            "value": "6.4.0.0"
+          }
+        ]
+      }
+    ]
+  }
+  
