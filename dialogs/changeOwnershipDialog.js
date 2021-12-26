@@ -71,6 +71,8 @@ class ChangeOwnershipDialog extends ComponentDialog {
         const groupName = activity.value.newGroup
 
         await step.context.sendActivity('Validating the inputs' + ' ' + itemID + '@' + userID + '@' + groupName);
+
+        return await step.next();
     }
 
     async processInputStep(step) {

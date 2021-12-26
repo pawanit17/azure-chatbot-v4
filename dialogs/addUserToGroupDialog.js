@@ -71,6 +71,8 @@ class AddUserToGroupDialog extends ComponentDialog {
         const roleName = activity.value.newRole
 
         await step.context.sendActivity('Validating the inputs' + ' ' + userID + '@' + groupName + '@' + roleName);
+
+        return await step.next();
     }
 
     async processInputStep(step) {
