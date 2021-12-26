@@ -73,7 +73,10 @@
   "actions": [
     {
       "type": "Action.Submit",
-      "title": "Submit"
+      "title": "Submit",
+      "data": {
+        "scenario": "add user to group"
+      }
     }
   ]
 }

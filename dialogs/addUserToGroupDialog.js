@@ -39,7 +39,8 @@ class AddUserToGroupDialog extends ComponentDialog {
         this.addDialog(new AttachmentPrompt(ATTACHMENT_PROMPT, this.picturePromptValidator));
 
         this.addDialog(new WaterfallDialog(WATERFALL_DIALOG, [
-            this.transportStep.bind(this),
+            this.validateInputStep.bind(this),
+            this.processInputStep.bind(this)
          ]));
 
         this.initialDialogId = WATERFALL_DIALOG;
@@ -62,14 +63,20 @@ class AddUserToGroupDialog extends ComponentDialog {
         }
     }
 
-    async transportStep(step) {
-        // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
-        // Running a prompt here means the next WaterfallStep will be run when the user's response is received.
+    async validateInputStep(step) {
+        
+        const activity = step.context.activity;
+        const userID = activity.value.userID
+        const groupName = activity.value.newGroup
+        const roleName = activity.value.newRole
 
-        await step.context.sendActivity({
-            attachments: [CardFactory.adaptiveCard(AddUserToGroupAdaptiveCard)]
-        });
+        await step.context.sendActivity('Validating the inputs' + ' ' + userID + '@' + groupName + '@' + roleName);
+    }
 
+    async processInputStep(step) {
+        await step.context.sendActivity('Processing the inputs');
+        
+        // PoC: Marks the end of the Waterfall.
         return await step.endDialog();
     }
 

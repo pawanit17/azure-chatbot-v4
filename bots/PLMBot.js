@@ -40,41 +40,74 @@ class PLMBot extends ActivityHandler {
             // Read UserState. If the 'DidBotWelcomedUser' does not exist (first time ever for a user)
             // set the default to false.
             
-			// This example uses an exact match on user's input utterance.
-			// Consider using LUIS or QnA for Natural Language Processing.
-			const text = context.activity.text.toLowerCase();
-			switch (text) {
-			case 'add user to group':
 
-                const { AddUserToGroupDialog } = require('../dialogs/addUserToGroupDialog.js');
-                const addUserToGroupDialog = new AddUserToGroupDialog(userState);
-                this.dialog = addUserToGroupDialog
+            // PoC: When the user clicks on Submit on an Adaptive Card, it would come up as a message here.
+            // To distinguish between normal messages and the user entered information messages, we use the
+            // below check.
+            if (context.activity.text === undefined && context.activity.value ) {
+                const scenario = context.activity.value.scenario;
 
-                // PoC: Run the dialog that is responsible for Adding a user to the Group.
-                await this.dialog.run(context, this.dialogState );
+                switch(scenario)
+                {
+                    case 'add user to group':
+                        const { AddUserToGroupDialog } = require('../dialogs/addUserToGroupDialog.js');
+                        const addUserToGroupDialog = new AddUserToGroupDialog(userState);
+                        this.dialog = addUserToGroupDialog;
 
-                // PoC: Let the flow proceed with the next step in the waterfall as needed.
-                await next();
+                        // PoC: Run the dialog that is responsible for Adding a user to the Group.
+                        await this.dialog.run(context, this.dialogState );
 
-				break;
-			case 'change ownership':
+                        // PoC: Let the flow proceed with the next step in the waterfall as needed.
+                        await next();
 
-                const { ChangeOwnershipDialog } = require('../dialogs/changeOwnershipDialog.js');
-                const changeOwnershipDialog = new ChangeOwnershipDialog(userState);
-                this.dialog = changeOwnershipDialog;
+                        break;
 
-                // PoC: Run the dialog that is responsible for Change Ownership.
-                await this.dialog.run(context, this.dialogState );
+                    case 'change ownership':
+                        const { ChangeOwnershipDialog } = require('../dialogs/changeOwnershipDialog.js');
+                        const changeOwnershipDialog = new ChangeOwnershipDialog(userState);
+                        this.dialog = changeOwnershipDialog;
+    
+                        // PoC: Run the dialog that is responsible for Change Ownership.
+                        await this.dialog.run(context, this.dialogState );
+    
+                        // PoC: Let the flow proceed with the next step in the waterfall as needed.
+                        await next();
 
-                // PoC: Let the flow proceed with the next step in the waterfall as needed.
-                await next();
+                        break;
+                }
+                
 
-				break;
-			default:
-				await context.sendActivity({
-                    attachments: [CardFactory.adaptiveCard(wipAdaptiveCard)]
-                });
-			}
+
+            }
+            else
+            {
+                // This example uses an exact match on user's input utterance.
+                // Consider using LUIS or QnA for Natural Language Processing.
+                const text = context.activity.text.toLowerCase();
+                // PoC TODO: If a LUIS Configuration is indeed introduced, it would need to be evaluated on 'text' to understand the intent.
+                switch (text) {
+                case 'add user to group':
+
+                    const AddUserToGroupAdaptiveCard = require('../resources/addUserToGroupDetailsAdaptiveCard.json');
+                    await context.sendActivity({
+                        attachments: [CardFactory.adaptiveCard(AddUserToGroupAdaptiveCard)]
+                    });
+
+                    break;
+                case 'change ownership':
+
+                    const changeOwnershipAdaptiveCard = require('../resources/changeOwnershipDetailsAdaptiveCard.json');
+                    await context.sendActivity({
+                        attachments: [CardFactory.adaptiveCard(changeOwnershipAdaptiveCard)]
+                    });
+
+                    break;
+                default:
+                    await context.sendActivity({
+                        attachments: [CardFactory.adaptiveCard(wipAdaptiveCard)]
+                    });
+                }
+            }
 
             // PoC: next() is needed to keep the waterfall alive.
             await next();
