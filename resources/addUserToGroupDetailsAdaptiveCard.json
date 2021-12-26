@@ -12,11 +12,10 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "Add User to Group",
+              "text": "Add User to Group in Teamcenter",
               "weight": "bolder",
               "size": "medium",
-              "wrap": true,
-              "style": "heading"
+              "wrap": true
             },
             {
               "type": "TextBlock",
@@ -32,8 +31,7 @@
             {
               "type": "Input.Text",
               "id": "userID",
-              "placeholder": "c-pavdit",
-              "isRequired": true
+              "placeholder": "c-pavdit"
             },
             {
               "type": "TextBlock",
@@ -53,11 +51,7 @@
             {
               "type": "Input.Text",
               "id": "newRole",
-              "placeholder": "Creator",
-              "validation": {
-                  "necessity": "Required",
-                  "errorMessage": "First Name is required"
-              }
+              "placeholder": "Creator"
             }
           ]
         },

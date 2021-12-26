@@ -15,8 +15,7 @@
               "text": "Change of Ownership of an Item",
               "weight": "bolder",
               "size": "medium",
-              "wrap": true,
-              "style": "heading"
+              "wrap": true
             },
             {
               "type": "TextBlock",

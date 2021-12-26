@@ -15,6 +15,7 @@ const restify = require('restify');
 const {
     CloudAdapter,
     ConfigurationServiceClientCredentialFactory,
+    ConversationState,
     createBotFrameworkAuthenticationFromConfiguration,
     MemoryStorage,
     UserState
@@ -63,10 +64,13 @@ adapter.onTurnError = async (context, error) => {
 // CAUTION: The Memory Storage used here is for local bot debugging only. When the bot
 // is restarted, anything stored in memory will be gone.
 const memoryStorage = new MemoryStorage();
+
+// Create conversation state with in-memory storage provider.
+const conversationState = new ConversationState(memoryStorage);
 const userState = new UserState(memoryStorage);
 
 // Create the main dialog.
-const plmBot = new PLMBot(userState);
+const plmBot = new PLMBot(conversationState, userState);
 
 // Create HTTP server
 const server = restify.createServer();
