@@ -61,10 +61,16 @@
           "items": [
             {
               "type": "Image",
+              "url": "https://mvptech.ae/wp-content/uploads/2019/04/Assa.png",
+              "size": "stretch",
+              "altText": "Assaabloy Logo"
+            },
+            {
+              "type": "Image",
               "url": "https://cdn-icons-png.flaticon.com/512/179/179616.png",
               "size": "auto",
               "altText": "Change of Ownership of an Item in Teamcenter"
-            }
+            }            
           ]
         }
       ]

@@ -61,6 +61,12 @@
           "items": [
             {
               "type": "Image",
+              "url": "https://mvptech.ae/wp-content/uploads/2019/04/Assa.png",
+              "size": "stretch",
+              "altText": "Assaabloy Logo"
+            },
+            {
+              "type": "Image",
               "url": "https://visualpharm.com/assets/796/Edit%20Account-595b40b75ba036ed117d5d62.svg",
               "size": "auto",
               "altText": "Addition of a user to a Group in Teamcenter"
